@@ -17,3 +17,21 @@ async function sendReminders(delayMessage){
 
     console.log(result)
 })();
+
+
+
+// Question 2 
+
+async function checkServer() {
+    return Math.random()<0.5? "Server is running" : Promise.reject("Server down");
+}
+    const intervalId = setInterval(() => {
+        checkServer()
+        .then(message => console.log("Good", message))
+        .catch(error =>console.log("fail", error))
+    }, 5000);
+    
+    setTimeout(() => {
+        clearInterval(intervalId);
+        console.log("Stopped polling")
+    }, 30000);
